@@ -26,14 +26,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private string $password;
+    private ?string $password;
 
     /**
      * @param string $email
      * @param array $roles
      * @param string $password
      */
-    public function __construct(string $email, string $password, array $roles = [])
+    public function __construct(string $email, string $password = null, array $roles = [])
     {
         $this->email = $email;
         $this->roles = $roles;

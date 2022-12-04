@@ -4,6 +4,21 @@
 
 {% block body %}
     <div>
-
+        <form action="http://127.0.0.1:8000/welcome/login" method="get">
+            <label>
+                <div>Login:</div>
+                <input type="email" name="email">
+                <input type="password" name="password">
+            </label>
+            <input type="submit" value="login">
+        </form>
+        <form action="http://127.0.0.1:8000/welcome/register" method="post">
+            <label>
+                <div>Register:</div>
+                <input type="email" name="email">
+                <input type="password" name="password">
+            </label>
+            <input type="submit" value="register">
+        </form>
     </div>
 {% endblock %}
