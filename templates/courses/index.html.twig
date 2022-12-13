@@ -8,24 +8,11 @@
             <div class="left_menu">
                 <div class="left_menu--navigation">
                     <ul class="border">
-                        <li>
-                            PHP: Base
-                        </li>
-                        <li>
-                            PHP: Symfony
-                        </li>
-                        <li>
-                            PHP: Laravel
-                        </li>
-                        <li>
-                            Go-lang: Base
-                        </li>
-                        <li>
-                            JS: Base
-                        </li>
-                        <li>
-                            JS: Vue js
-                        </li>
+                        {% for course in courses %}
+                            <li>
+                                {{ course.name }}
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
