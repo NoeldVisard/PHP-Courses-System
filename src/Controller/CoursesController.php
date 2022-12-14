@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\CourseServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\VarDumper\VarDumper;
@@ -18,5 +19,12 @@ class CoursesController extends AbstractController
             'controller_name' => 'CoursesController',
             'courses' => $courses,
         ]);
+    }
+
+    #[Route('/courses/{courseId}', methods:['GET'], name: 'app_course')]
+    public function getCourse(CourseServices $courseServices, int $courseId): Response
+    {
+        $courseBlocks = $courseServices->getCourseBlocksByCourseId($courseId);
+        return new JsonResponse($courseBlocks);
     }
 }

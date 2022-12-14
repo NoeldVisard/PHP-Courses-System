@@ -39,6 +39,17 @@ class CourseBlockRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllByCourseId(int $id)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT cb.id, cb.name, cb.description, cb.courseId
+            FROM App\Entity\CourseBlock cb
+            WHERE cb.courseId = :courseId'
+        )->setParameter('courseId', $id);
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return CourseBlock[] Returns an array of CourseBlock objects
 //     */
