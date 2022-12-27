@@ -44,7 +44,14 @@ class WelcomeController extends AbstractController
     {
         $newUser = $userServices->createUser($_POST, $userPasswordHasher);
         $userServices->saveUser($newUser);
-        return new Response();
+
+        $error = false;
+        $lastUsername = '';
+        return $this->render('welcome/index.html.twig', [
+            'controller_name' => 'WelcomeController',
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
     }
 
 }
