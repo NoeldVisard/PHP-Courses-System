@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -28,16 +29,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password;
 
+//    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+//    private array $coursesId = [];
+
     /**
      * @param string $email
      * @param array $roles
      * @param string $password
      */
-    public function __construct(string $email, string $password = null, array $roles = [])
+    public function __construct(string $email, string $password = null, array $roles = [], array $coursesId = [])
     {
         $this->email = $email;
         $this->roles = $roles;
         $this->password = $password;
+        $this->coursesId = $coursesId;
     }
 
 
@@ -109,5 +114,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getCoursesId(): array
+    {
+        return $this->coursesId;
+    }
+
+    public function setCoursesId(?array $coursesId): self
+    {
+        $this->coursesId = $coursesId;
+
+        return $this;
     }
 }
