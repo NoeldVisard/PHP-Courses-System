@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\CommentServices;
 use App\Service\CourseServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,5 +27,15 @@ class CoursesController extends AbstractController
     {
         $courseBlocks = $courseServices->getCourseBlocksByCourseId($courseId);
         return new JsonResponse($courseBlocks);
+    }
+
+    #[Route('/courses/add-comment', methods: ['POST'], name: 'app_add_comment')]
+    public function addComment(CommentServices $commentServices)
+    {
+        $comment = $_POST["comment"];
+        $courseId = (int) $_POST["course"];
+        $newComment = $commentServices->addComment($courseId, $comment, $this->getUser()->getId());
+//        return new JsonResponse(array('id' => $newComment->getId(), 'comment' => $newComment->getComment()));
+        return $this->redirect('http://127.0.0.1:8000/courses/');
     }
 }
