@@ -58,8 +58,8 @@
                     blocksElem.innerHTML = ''
                     let counterBlocks = 1;
                     for (let block of courseBlocks) {
-                        console.log('counterBlocks', counterBlocks)
-                        console.log(block);
+                        // console.log('counterBlocks', counterBlocks)
+                        // console.log(block);
                         blocksElem.innerHTML += `
                             <li>
                                 <h2>${counterBlocks}</h2>
@@ -70,6 +70,11 @@
                         counterBlocks++
                         document.querySelector('#comment_id_course').value = block.courseId
                     }
+                    console.log(courseBlocks[0].comments)
+                    courseBlocks[0].comments.forEach(elem => {
+                        console.log(elem)
+                        document.querySelector('.comments').innerHTML += `<p class="all-comments">${elem}</p>`;
+                    })
                 }
             })
         }

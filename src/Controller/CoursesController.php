@@ -23,9 +23,16 @@ class CoursesController extends AbstractController
     }
 
     #[Route('/courses/{courseId}', methods:['GET'], name: 'app_course')]
-    public function getCourse(CourseServices $courseServices, int $courseId): Response
+    public function getCourse(CourseServices $courseServices, CommentServices $commentServices, int $courseId): Response
     {
         $courseBlocks = $courseServices->getCourseBlocksByCourseId($courseId);
+//        $courseBlocks[0]["comments"] = $commentServices->getAllCommentsByCourseId($courseId);
+        $commentsArr = $commentServices->getAllCommentsByCourseId($courseId);
+        foreach ($commentsArr as $commentsObj) {
+            $courseBlocks[0]["comments"][] = $commentsObj->getComment();
+        }
+//        var_dump($courseBlocks[0]["comments"]);
+//        exit;
         return new JsonResponse($courseBlocks);
     }
 

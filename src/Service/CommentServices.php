@@ -19,4 +19,9 @@ class CommentServices extends AbstractService
         return $newComment;
     }
 
+    public function getAllCommentsByCourseId(int $courseId): array
+    {
+        return $this->entityManager->getRepository(Comment::class)->findBy(['courseId' => $courseId]);
+    }
+
 }

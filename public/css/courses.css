@@ -192,3 +192,9 @@ body {
 .comments {
     margin-left: 30%;
 }
+
+.all-comments {
+    background: #bdd3cc;
+    color: black;
+    margin-left: 1rem;
+}
