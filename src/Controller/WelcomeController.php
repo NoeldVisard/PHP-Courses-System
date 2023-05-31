@@ -31,8 +31,11 @@ class WelcomeController extends AbstractController
     public function indexEmptyUrl(): Response
     {
         // TODO: make redirect to "/welcome"
+        $error = '';
         return $this->render('welcome/index.html.twig', [
             'controller_name' => 'WelcomeController',
+            'error' => $error,
+            'last_username' => '',
         ]);
     }
 
